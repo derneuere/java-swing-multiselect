@@ -43,16 +43,21 @@ public class MultiSelectExample extends JPanel implements MultiSelect<String>
 
     private void createElements()
     {
-    	elements.add("firstString");
-    	elements.add("important");
+    	elements.add("Berlin");
         tagNameText = new JLabel("Elements:");
         comboBox = new JComboBox<>();
         elements.forEach(i -> tags.add(new Tag<String>(i, this)));
+    	elements.add("London");
+    	elements.add("Madrid");
+    	elements.add("Rome");
+    	elements.add("San Francisco");
+    	elements.add("Austin");
+    	elements.add("New York");
         elements.forEach(i -> comboBox.addItem(i.toString()));
         comboBox.setEditable(true);
         comboBox.setSelectedIndex(-1);
         editor = (JTextField) comboBox.getEditor().getEditorComponent();
-        editor.setText("*");
+        editor.setText("");
         editor.addKeyListener(new AutoCompleteListener(comboBox));
         editor.addKeyListener(new TagEditorListener<String>(this));
     }
@@ -75,6 +80,8 @@ public class MultiSelectExample extends JPanel implements MultiSelect<String>
         gbc.gridx = 0; 
 	    gbc.gridy = 1; 
 	    add(tagPanel,gbc);
+	    tagPanel.validate();
+	    tagPanel.repaint();
         validate();
         repaint();
     }
